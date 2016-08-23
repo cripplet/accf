@@ -1,0 +1,11 @@
+package accf;
+
+message Point {
+  repeated double coord = 1;
+}
+
+message Particle {
+  optional Point location = 1;
+  optional double radius = 2;
+  optional double mass = 3;
+}
