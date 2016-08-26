@@ -26,7 +26,7 @@
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
-namespace config {
+namespace protos {
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_config_2eproto();
@@ -103,7 +103,7 @@ class Config : public ::google::protobuf::Message {
   inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
       mutable_size();
 
-  // @@protoc_insertion_point(class_scope:config.Config)
+  // @@protoc_insertion_point(class_scope:protos.Config)
  private:
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
@@ -155,7 +155,7 @@ Config::mutable_size() {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace config
+}  // namespace protos
 
 #ifndef SWIG
 namespace google {

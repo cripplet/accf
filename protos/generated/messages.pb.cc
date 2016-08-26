@@ -16,7 +16,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
-namespace accf {
+namespace protos {
 
 namespace {
 
@@ -37,8 +37,10 @@ void protobuf_AssignDesc_messages_2eproto() {
       "messages.proto");
   GOOGLE_CHECK(file != NULL);
   Point_descriptor_ = file->message_type(0);
-  static const int Point_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, coord_),
+  static const int Point_offsets_[3] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, x_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, y_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Point, z_),
   };
   Point_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -102,9 +104,10 @@ void protobuf_AddDesc_messages_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\016messages.proto\022\004accf\"\026\n\005Point\022\r\n\005coord"
-    "\030\001 \003(\001\"G\n\010Particle\022\035\n\010location\030\001 \001(\0132\013.a"
-    "ccf.Point\022\016\n\006radius\030\002 \001(\001\022\014\n\004mass\030\003 \001(\001", 119);
+    "\n\016messages.proto\022\006protos\"(\n\005Point\022\t\n\001x\030\001"
+    " \001(\001\022\t\n\001y\030\002 \001(\001\022\t\n\001z\030\003 \001(\001\"I\n\010Particle\022\037"
+    "\n\010location\030\001 \001(\0132\r.protos.Point\022\016\n\006radiu"
+    "s\030\002 \001(\001\022\014\n\004mass\030\003 \001(\001", 141);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "messages.proto", &protobuf_RegisterTypes);
   Point::default_instance_ = new Point();
@@ -124,7 +127,9 @@ struct StaticDescriptorInitializer_messages_2eproto {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Point::kCoordFieldNumber;
+const int Point::kXFieldNumber;
+const int Point::kYFieldNumber;
+const int Point::kZFieldNumber;
 #endif  // !_MSC_VER
 
 Point::Point()
@@ -143,6 +148,9 @@ Point::Point(const Point& from)
 
 void Point::SharedCtor() {
   _cached_size_ = 0;
+  x_ = 0;
+  y_ = 0;
+  z_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -177,7 +185,11 @@ Point* Point::New() const {
 }
 
 void Point::Clear() {
-  coord_.Clear();
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    x_ = 0;
+    y_ = 0;
+    z_ = 0;
+  }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -188,24 +200,49 @@ bool Point::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated double coord = 1;
+      // optional double x = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
-         parse_coord:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 1, 9, input, this->mutable_coord())));
-        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
-                   == ::google::protobuf::internal::WireFormatLite::
-                      WIRETYPE_LENGTH_DELIMITED) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
-                 input, this->mutable_coord())));
+                 input, &x_)));
+          set_has_x();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(9)) goto parse_coord;
+        if (input->ExpectTag(17)) goto parse_y;
+        break;
+      }
+
+      // optional double y = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_y:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &y_)));
+          set_has_y();
+        } else {
+          goto handle_uninterpreted;
+        }
+        if (input->ExpectTag(25)) goto parse_z;
+        break;
+      }
+
+      // optional double z = 3;
+      case 3: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_z:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &z_)));
+          set_has_z();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -228,10 +265,19 @@ bool Point::MergePartialFromCodedStream(
 
 void Point::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated double coord = 1;
-  for (int i = 0; i < this->coord_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteDouble(
-      1, this->coord(i), output);
+  // optional double x = 1;
+  if (has_x()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->x(), output);
+  }
+
+  // optional double y = 2;
+  if (has_y()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->y(), output);
+  }
+
+  // optional double z = 3;
+  if (has_z()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(3, this->z(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -242,10 +288,19 @@ void Point::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Point::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated double coord = 1;
-  for (int i = 0; i < this->coord_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteDoubleToArray(1, this->coord(i), target);
+  // optional double x = 1;
+  if (has_x()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->x(), target);
+  }
+
+  // optional double y = 2;
+  if (has_y()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->y(), target);
+  }
+
+  // optional double z = 3;
+  if (has_z()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(3, this->z(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -258,13 +313,23 @@ void Point::SerializeWithCachedSizes(
 int Point::ByteSize() const {
   int total_size = 0;
 
-  // repeated double coord = 1;
-  {
-    int data_size = 0;
-    data_size = 8 * this->coord_size();
-    total_size += 1 * this->coord_size() + data_size;
-  }
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional double x = 1;
+    if (has_x()) {
+      total_size += 1 + 8;
+    }
 
+    // optional double y = 2;
+    if (has_y()) {
+      total_size += 1 + 8;
+    }
+
+    // optional double z = 3;
+    if (has_z()) {
+      total_size += 1 + 8;
+    }
+
+  }
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -290,7 +355,17 @@ void Point::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Point::MergeFrom(const Point& from) {
   GOOGLE_CHECK_NE(&from, this);
-  coord_.MergeFrom(from.coord_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_x()) {
+      set_x(from.x());
+    }
+    if (from.has_y()) {
+      set_y(from.y());
+    }
+    if (from.has_z()) {
+      set_z(from.z());
+    }
+  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -313,7 +388,9 @@ bool Point::IsInitialized() const {
 
 void Point::Swap(Point* other) {
   if (other != this) {
-    coord_.Swap(&other->coord_);
+    std::swap(x_, other->x_);
+    std::swap(y_, other->y_);
+    std::swap(z_, other->z_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
@@ -343,7 +420,7 @@ Particle::Particle()
 }
 
 void Particle::InitAsDefaultInstance() {
-  location_ = const_cast< ::accf::Point*>(&::accf::Point::default_instance());
+  location_ = const_cast< ::protos::Point*>(&::protos::Point::default_instance());
 }
 
 Particle::Particle(const Particle& from)
@@ -394,7 +471,7 @@ Particle* Particle::New() const {
 void Particle::Clear() {
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (has_location()) {
-      if (location_ != NULL) location_->::accf::Point::Clear();
+      if (location_ != NULL) location_->::protos::Point::Clear();
     }
     radius_ = 0;
     mass_ = 0;
@@ -409,7 +486,7 @@ bool Particle::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional .accf.Point location = 1;
+      // optional .protos.Point location = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
             ::google::protobuf::internal::WireFormatLite::WIRETYPE_LENGTH_DELIMITED) {
@@ -472,7 +549,7 @@ bool Particle::MergePartialFromCodedStream(
 
 void Particle::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // optional .accf.Point location = 1;
+  // optional .protos.Point location = 1;
   if (has_location()) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
       1, this->location(), output);
@@ -496,7 +573,7 @@ void Particle::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Particle::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // optional .accf.Point location = 1;
+  // optional .protos.Point location = 1;
   if (has_location()) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
@@ -524,7 +601,7 @@ int Particle::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional .accf.Point location = 1;
+    // optional .protos.Point location = 1;
     if (has_location()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
@@ -569,7 +646,7 @@ void Particle::MergeFrom(const Particle& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
     if (from.has_location()) {
-      mutable_location()->::accf::Point::MergeFrom(from.location());
+      mutable_location()->::protos::Point::MergeFrom(from.location());
     }
     if (from.has_radius()) {
       set_radius(from.radius());
@@ -620,6 +697,6 @@ void Particle::Swap(Particle* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace accf
+}  // namespace protos
 
 // @@protoc_insertion_point(global_scope)

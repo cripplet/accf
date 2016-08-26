@@ -1,4 +1,4 @@
-package config;
+package protos;
 
 message Config {
   repeated int32 size = 1;

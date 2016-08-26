@@ -3,7 +3,7 @@ CFLAGS=-Wall -Werror -O3 -std=c++11 -g -Wl,--no-as-needed -ldl -rdynamic -fstack
 
 LIBS=-pthread -lprotobuf
 
-INCLUDE_LIBS=-Iprotos/generated/
+INCLUDE_LIBS=-Iprotos/generated/ -Iinclude/
 
 S_SOURCES=protos/generated/*cc src/*cc
 S_OBJECTS=$(S_SOURCES:.cc=.o)

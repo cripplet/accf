@@ -26,7 +26,7 @@
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
-namespace accf {
+namespace protos {
 
 // Internal implementation detail -- do not call these.
 void  protobuf_AddDesc_messages_2eproto();
@@ -92,27 +92,44 @@ class Point : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated double coord = 1;
-  inline int coord_size() const;
-  inline void clear_coord();
-  static const int kCoordFieldNumber = 1;
-  inline double coord(int index) const;
-  inline void set_coord(int index, double value);
-  inline void add_coord(double value);
-  inline const ::google::protobuf::RepeatedField< double >&
-      coord() const;
-  inline ::google::protobuf::RepeatedField< double >*
-      mutable_coord();
+  // optional double x = 1;
+  inline bool has_x() const;
+  inline void clear_x();
+  static const int kXFieldNumber = 1;
+  inline double x() const;
+  inline void set_x(double value);
 
-  // @@protoc_insertion_point(class_scope:accf.Point)
+  // optional double y = 2;
+  inline bool has_y() const;
+  inline void clear_y();
+  static const int kYFieldNumber = 2;
+  inline double y() const;
+  inline void set_y(double value);
+
+  // optional double z = 3;
+  inline bool has_z() const;
+  inline void clear_z();
+  static const int kZFieldNumber = 3;
+  inline double z() const;
+  inline void set_z(double value);
+
+  // @@protoc_insertion_point(class_scope:protos.Point)
  private:
+  inline void set_has_x();
+  inline void clear_has_x();
+  inline void set_has_y();
+  inline void clear_has_y();
+  inline void set_has_z();
+  inline void clear_has_z();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::RepeatedField< double > coord_;
+  double x_;
+  double y_;
+  double z_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(3 + 31) / 32];
 
   friend void  protobuf_AddDesc_messages_2eproto();
   friend void protobuf_AssignDesc_messages_2eproto();
@@ -177,14 +194,14 @@ class Particle : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional .accf.Point location = 1;
+  // optional .protos.Point location = 1;
   inline bool has_location() const;
   inline void clear_location();
   static const int kLocationFieldNumber = 1;
-  inline const ::accf::Point& location() const;
-  inline ::accf::Point* mutable_location();
-  inline ::accf::Point* release_location();
-  inline void set_allocated_location(::accf::Point* location);
+  inline const ::protos::Point& location() const;
+  inline ::protos::Point* mutable_location();
+  inline ::protos::Point* release_location();
+  inline void set_allocated_location(::protos::Point* location);
 
   // optional double radius = 2;
   inline bool has_radius() const;
@@ -200,7 +217,7 @@ class Particle : public ::google::protobuf::Message {
   inline double mass() const;
   inline void set_mass(double value);
 
-  // @@protoc_insertion_point(class_scope:accf.Particle)
+  // @@protoc_insertion_point(class_scope:protos.Particle)
  private:
   inline void set_has_location();
   inline void clear_has_location();
@@ -211,7 +228,7 @@ class Particle : public ::google::protobuf::Message {
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::accf::Point* location_;
+  ::protos::Point* location_;
   double radius_;
   double mass_;
 
@@ -232,36 +249,77 @@ class Particle : public ::google::protobuf::Message {
 
 // Point
 
-// repeated double coord = 1;
-inline int Point::coord_size() const {
-  return coord_.size();
+// optional double x = 1;
+inline bool Point::has_x() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Point::clear_coord() {
-  coord_.Clear();
+inline void Point::set_has_x() {
+  _has_bits_[0] |= 0x00000001u;
 }
-inline double Point::coord(int index) const {
-  return coord_.Get(index);
+inline void Point::clear_has_x() {
+  _has_bits_[0] &= ~0x00000001u;
 }
-inline void Point::set_coord(int index, double value) {
-  coord_.Set(index, value);
+inline void Point::clear_x() {
+  x_ = 0;
+  clear_has_x();
 }
-inline void Point::add_coord(double value) {
-  coord_.Add(value);
+inline double Point::x() const {
+  return x_;
 }
-inline const ::google::protobuf::RepeatedField< double >&
-Point::coord() const {
-  return coord_;
+inline void Point::set_x(double value) {
+  set_has_x();
+  x_ = value;
 }
-inline ::google::protobuf::RepeatedField< double >*
-Point::mutable_coord() {
-  return &coord_;
+
+// optional double y = 2;
+inline bool Point::has_y() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Point::set_has_y() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Point::clear_has_y() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Point::clear_y() {
+  y_ = 0;
+  clear_has_y();
+}
+inline double Point::y() const {
+  return y_;
+}
+inline void Point::set_y(double value) {
+  set_has_y();
+  y_ = value;
+}
+
+// optional double z = 3;
+inline bool Point::has_z() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Point::set_has_z() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Point::clear_has_z() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void Point::clear_z() {
+  z_ = 0;
+  clear_has_z();
+}
+inline double Point::z() const {
+  return z_;
+}
+inline void Point::set_z(double value) {
+  set_has_z();
+  z_ = value;
 }
 
 // -------------------------------------------------------------------
 
 // Particle
 
-// optional .accf.Point location = 1;
+// optional .protos.Point location = 1;
 inline bool Particle::has_location() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
@@ -272,24 +330,24 @@ inline void Particle::clear_has_location() {
   _has_bits_[0] &= ~0x00000001u;
 }
 inline void Particle::clear_location() {
-  if (location_ != NULL) location_->::accf::Point::Clear();
+  if (location_ != NULL) location_->::protos::Point::Clear();
   clear_has_location();
 }
-inline const ::accf::Point& Particle::location() const {
+inline const ::protos::Point& Particle::location() const {
   return location_ != NULL ? *location_ : *default_instance_->location_;
 }
-inline ::accf::Point* Particle::mutable_location() {
+inline ::protos::Point* Particle::mutable_location() {
   set_has_location();
-  if (location_ == NULL) location_ = new ::accf::Point;
+  if (location_ == NULL) location_ = new ::protos::Point;
   return location_;
 }
-inline ::accf::Point* Particle::release_location() {
+inline ::protos::Point* Particle::release_location() {
   clear_has_location();
-  ::accf::Point* temp = location_;
+  ::protos::Point* temp = location_;
   location_ = NULL;
   return temp;
 }
-inline void Particle::set_allocated_location(::accf::Point* location) {
+inline void Particle::set_allocated_location(::protos::Point* location) {
   delete location_;
   location_ = location;
   if (location) {
@@ -346,7 +404,7 @@ inline void Particle::set_mass(double value) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace accf
+}  // namespace protos
 
 #ifndef SWIG
 namespace google {

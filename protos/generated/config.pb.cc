@@ -16,7 +16,7 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 
-namespace config {
+namespace protos {
 
 namespace {
 
@@ -78,7 +78,7 @@ void protobuf_AddDesc_config_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\014config.proto\022\006config\"\026\n\006Config\022\014\n\004size"
+    "\n\014config.proto\022\006protos\"\026\n\006Config\022\014\n\004size"
     "\030\001 \003(\005", 46);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "config.proto", &protobuf_RegisterTypes);
@@ -307,6 +307,6 @@ void Config::Swap(Config* other) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace config
+}  // namespace protos
 
 // @@protoc_insertion_point(global_scope)
