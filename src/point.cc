@@ -18,6 +18,10 @@ std::vector<double> accf::Point::coordinates() {
   return std::vector<double>({this->_x, this->_y, this->_z});
 }
 
+double accf::Point::x() { return this->_x; }
+double accf::Point::y() { return this->_y; }
+double accf::Point::z() { return this->_z; }
+
 accf::Point accf::PointFromCartesian(double x, double y, double z) {
   protos::Point p;
   p.set_x(x);
@@ -30,14 +34,12 @@ accf::Point accf::PointFromCylindrical(double r, double theta, double z) {
   return accf::Point(r, theta, z);
 }
 
-
 bool operator==(accf::Point l, accf::Point r) {
-  double tolerance = 5.0 / 10000.0;
-  auto lc = l.coordinates();
-  auto rc = r.coordinates();
-  return (abs(lc.at(0) - rc.at(0)) < tolerance) &&
-         (abs(lc.at(1) - rc.at(1)) < tolerance) &&
-         (abs(lc.at(2) - rc.at(2)) < tolerance);
+  // TODO(minkezhang): Put tolerance into config file.
+  double tolerance = 1.0 / 100000000.0;
+  return (abs(l.x() - r.x()) < tolerance) &&
+         (abs(l.y() - r.y()) < tolerance) &&
+         (abs(l.z() - r.z()) < tolerance);
 }
 
 bool operator!=(accf::Point l, accf::Point r) {

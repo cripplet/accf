@@ -11,7 +11,10 @@ S_EXECUTABLE=accf.app
 
 .PHONY: all clean test prep
 
-all: $(S_SOURCES) $(S_EXECUTABLE)
+all: clean $(S_SOURCES) $(S_EXECUTABLE)
 
 $(S_EXECUTABLE): $(S_OBJECTS)
 	@$(CC) $(CFLAGS) $(INCLUDE_LIBS) $(INCLUDE) $(S_OBJECTS) -o $@ $(LIBS)
+
+clean:
+	@rm -f $(S_EXECUTABLE) *.o *.log core
