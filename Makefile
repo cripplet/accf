@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-Wall -Werror -O3 -std=c++11 -g -Wl,--no-as-needed -ldl -rdynamic -fstack-protector-all
 
-LIBS=-pthread -lprotobuf
+LIBS=-lpthread -lprotobuf
 
 INCLUDE_LIBS=-Iprotos/generated/ -Iinclude/
 

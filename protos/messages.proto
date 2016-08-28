@@ -11,3 +11,10 @@ message Particle {
   optional double radius = 2;
   optional double mass = 3;
 }
+
+message Box {
+  repeated Particle particles = 1;
+  optional double x = 2;
+  optional double y = 3;
+  optional double z = 4;
+}

@@ -1,5 +1,6 @@
 package protos;
 
 message Config {
-  repeated int32 size = 1;
+  optional double tolerance = 1;
+  optional double n_angular_buckets = 2;
 }

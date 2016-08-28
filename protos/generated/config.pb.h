@@ -91,27 +91,34 @@ class Config : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated int32 size = 1;
-  inline int size_size() const;
-  inline void clear_size();
-  static const int kSizeFieldNumber = 1;
-  inline ::google::protobuf::int32 size(int index) const;
-  inline void set_size(int index, ::google::protobuf::int32 value);
-  inline void add_size(::google::protobuf::int32 value);
-  inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-      size() const;
-  inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-      mutable_size();
+  // optional double tolerance = 1;
+  inline bool has_tolerance() const;
+  inline void clear_tolerance();
+  static const int kToleranceFieldNumber = 1;
+  inline double tolerance() const;
+  inline void set_tolerance(double value);
+
+  // optional double n_angular_buckets = 2;
+  inline bool has_n_angular_buckets() const;
+  inline void clear_n_angular_buckets();
+  static const int kNAngularBucketsFieldNumber = 2;
+  inline double n_angular_buckets() const;
+  inline void set_n_angular_buckets(double value);
 
   // @@protoc_insertion_point(class_scope:protos.Config)
  private:
+  inline void set_has_tolerance();
+  inline void clear_has_tolerance();
+  inline void set_has_n_angular_buckets();
+  inline void clear_has_n_angular_buckets();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
-  ::google::protobuf::RepeatedField< ::google::protobuf::int32 > size_;
+  double tolerance_;
+  double n_angular_buckets_;
 
   mutable int _cached_size_;
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
 
   friend void  protobuf_AddDesc_config_2eproto();
   friend void protobuf_AssignDesc_config_2eproto();
@@ -127,29 +134,48 @@ class Config : public ::google::protobuf::Message {
 
 // Config
 
-// repeated int32 size = 1;
-inline int Config::size_size() const {
-  return size_.size();
+// optional double tolerance = 1;
+inline bool Config::has_tolerance() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void Config::clear_size() {
-  size_.Clear();
+inline void Config::set_has_tolerance() {
+  _has_bits_[0] |= 0x00000001u;
 }
-inline ::google::protobuf::int32 Config::size(int index) const {
-  return size_.Get(index);
+inline void Config::clear_has_tolerance() {
+  _has_bits_[0] &= ~0x00000001u;
 }
-inline void Config::set_size(int index, ::google::protobuf::int32 value) {
-  size_.Set(index, value);
+inline void Config::clear_tolerance() {
+  tolerance_ = 0;
+  clear_has_tolerance();
 }
-inline void Config::add_size(::google::protobuf::int32 value) {
-  size_.Add(value);
+inline double Config::tolerance() const {
+  return tolerance_;
 }
-inline const ::google::protobuf::RepeatedField< ::google::protobuf::int32 >&
-Config::size() const {
-  return size_;
+inline void Config::set_tolerance(double value) {
+  set_has_tolerance();
+  tolerance_ = value;
 }
-inline ::google::protobuf::RepeatedField< ::google::protobuf::int32 >*
-Config::mutable_size() {
-  return &size_;
+
+// optional double n_angular_buckets = 2;
+inline bool Config::has_n_angular_buckets() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Config::set_has_n_angular_buckets() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Config::clear_has_n_angular_buckets() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Config::clear_n_angular_buckets() {
+  n_angular_buckets_ = 0;
+  clear_has_n_angular_buckets();
+}
+inline double Config::n_angular_buckets() const {
+  return n_angular_buckets_;
+}
+inline void Config::set_n_angular_buckets(double value) {
+  set_has_n_angular_buckets();
+  n_angular_buckets_ = value;
 }
 
 

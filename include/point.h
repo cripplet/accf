@@ -25,7 +25,7 @@ namespace accf {
 
   template<typename T>
   T ComputeAngularAverage(std::function<T(Point&)> f, double r, double z);
-}
+}  // namespace accf
 
 bool operator==(accf::Point l, accf::Point r);
 bool operator!=(accf::Point l, accf::Point r);

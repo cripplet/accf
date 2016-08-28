@@ -35,6 +35,7 @@ void protobuf_ShutdownFile_messages_2eproto();
 
 class Point;
 class Particle;
+class Box;
 
 // ===================================================================
 
@@ -242,6 +243,121 @@ class Particle : public ::google::protobuf::Message {
   void InitAsDefaultInstance();
   static Particle* default_instance_;
 };
+// -------------------------------------------------------------------
+
+class Box : public ::google::protobuf::Message {
+ public:
+  Box();
+  virtual ~Box();
+
+  Box(const Box& from);
+
+  inline Box& operator=(const Box& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Box& default_instance();
+
+  void Swap(Box* other);
+
+  // implements Message ----------------------------------------------
+
+  Box* New() const;
+  void CopyFrom(const ::google::protobuf::Message& from);
+  void MergeFrom(const ::google::protobuf::Message& from);
+  void CopyFrom(const Box& from);
+  void MergeFrom(const Box& from);
+  void Clear();
+  bool IsInitialized() const;
+
+  int ByteSize() const;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input);
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const;
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const;
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .protos.Particle particles = 1;
+  inline int particles_size() const;
+  inline void clear_particles();
+  static const int kParticlesFieldNumber = 1;
+  inline const ::protos::Particle& particles(int index) const;
+  inline ::protos::Particle* mutable_particles(int index);
+  inline ::protos::Particle* add_particles();
+  inline const ::google::protobuf::RepeatedPtrField< ::protos::Particle >&
+      particles() const;
+  inline ::google::protobuf::RepeatedPtrField< ::protos::Particle >*
+      mutable_particles();
+
+  // optional double x = 2;
+  inline bool has_x() const;
+  inline void clear_x();
+  static const int kXFieldNumber = 2;
+  inline double x() const;
+  inline void set_x(double value);
+
+  // optional double y = 3;
+  inline bool has_y() const;
+  inline void clear_y();
+  static const int kYFieldNumber = 3;
+  inline double y() const;
+  inline void set_y(double value);
+
+  // optional double z = 4;
+  inline bool has_z() const;
+  inline void clear_z();
+  static const int kZFieldNumber = 4;
+  inline double z() const;
+  inline void set_z(double value);
+
+  // @@protoc_insertion_point(class_scope:protos.Box)
+ private:
+  inline void set_has_x();
+  inline void clear_has_x();
+  inline void set_has_y();
+  inline void clear_has_y();
+  inline void set_has_z();
+  inline void clear_has_z();
+
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+
+  ::google::protobuf::RepeatedPtrField< ::protos::Particle > particles_;
+  double x_;
+  double y_;
+  double z_;
+
+  mutable int _cached_size_;
+  ::google::protobuf::uint32 _has_bits_[(4 + 31) / 32];
+
+  friend void  protobuf_AddDesc_messages_2eproto();
+  friend void protobuf_AssignDesc_messages_2eproto();
+  friend void protobuf_ShutdownFile_messages_2eproto();
+
+  void InitAsDefaultInstance();
+  static Box* default_instance_;
+};
 // ===================================================================
 
 
@@ -399,6 +515,101 @@ inline double Particle::mass() const {
 inline void Particle::set_mass(double value) {
   set_has_mass();
   mass_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// Box
+
+// repeated .protos.Particle particles = 1;
+inline int Box::particles_size() const {
+  return particles_.size();
+}
+inline void Box::clear_particles() {
+  particles_.Clear();
+}
+inline const ::protos::Particle& Box::particles(int index) const {
+  return particles_.Get(index);
+}
+inline ::protos::Particle* Box::mutable_particles(int index) {
+  return particles_.Mutable(index);
+}
+inline ::protos::Particle* Box::add_particles() {
+  return particles_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::protos::Particle >&
+Box::particles() const {
+  return particles_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::protos::Particle >*
+Box::mutable_particles() {
+  return &particles_;
+}
+
+// optional double x = 2;
+inline bool Box::has_x() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void Box::set_has_x() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void Box::clear_has_x() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void Box::clear_x() {
+  x_ = 0;
+  clear_has_x();
+}
+inline double Box::x() const {
+  return x_;
+}
+inline void Box::set_x(double value) {
+  set_has_x();
+  x_ = value;
+}
+
+// optional double y = 3;
+inline bool Box::has_y() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void Box::set_has_y() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void Box::clear_has_y() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void Box::clear_y() {
+  y_ = 0;
+  clear_has_y();
+}
+inline double Box::y() const {
+  return y_;
+}
+inline void Box::set_y(double value) {
+  set_has_y();
+  y_ = value;
+}
+
+// optional double z = 4;
+inline bool Box::has_z() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void Box::set_has_z() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void Box::clear_has_z() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void Box::clear_z() {
+  z_ = 0;
+  clear_has_z();
+}
+inline double Box::z() const {
+  return z_;
+}
+inline void Box::set_z(double value) {
+  set_has_z();
+  z_ = value;
 }
 
 

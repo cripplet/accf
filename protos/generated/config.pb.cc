@@ -34,8 +34,9 @@ void protobuf_AssignDesc_config_2eproto() {
       "config.proto");
   GOOGLE_CHECK(file != NULL);
   Config_descriptor_ = file->message_type(0);
-  static const int Config_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Config, size_),
+  static const int Config_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Config, tolerance_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Config, n_angular_buckets_),
   };
   Config_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -78,8 +79,8 @@ void protobuf_AddDesc_config_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\014config.proto\022\006protos\"\026\n\006Config\022\014\n\004size"
-    "\030\001 \003(\005", 46);
+    "\n\014config.proto\022\006protos\"6\n\006Config\022\021\n\ttole"
+    "rance\030\001 \001(\001\022\031\n\021n_angular_buckets\030\002 \001(\001", 78);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "config.proto", &protobuf_RegisterTypes);
   Config::default_instance_ = new Config();
@@ -97,7 +98,8 @@ struct StaticDescriptorInitializer_config_2eproto {
 // ===================================================================
 
 #ifndef _MSC_VER
-const int Config::kSizeFieldNumber;
+const int Config::kToleranceFieldNumber;
+const int Config::kNAngularBucketsFieldNumber;
 #endif  // !_MSC_VER
 
 Config::Config()
@@ -116,6 +118,8 @@ Config::Config(const Config& from)
 
 void Config::SharedCtor() {
   _cached_size_ = 0;
+  tolerance_ = 0;
+  n_angular_buckets_ = 0;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -150,7 +154,10 @@ Config* Config::New() const {
 }
 
 void Config::Clear() {
-  size_.Clear();
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    tolerance_ = 0;
+    n_angular_buckets_ = 0;
+  }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -161,24 +168,33 @@ bool Config::MergePartialFromCodedStream(
   ::google::protobuf::uint32 tag;
   while ((tag = input->ReadTag()) != 0) {
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated int32 size = 1;
+      // optional double tolerance = 1;
       case 1: {
         if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
-            ::google::protobuf::internal::WireFormatLite::WIRETYPE_VARINT) {
-         parse_size:
-          DO_((::google::protobuf::internal::WireFormatLite::ReadRepeatedPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 1, 8, input, this->mutable_size())));
-        } else if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag)
-                   == ::google::protobuf::internal::WireFormatLite::
-                      WIRETYPE_LENGTH_DELIMITED) {
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPackedPrimitiveNoInline<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, this->mutable_size())));
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &tolerance_)));
+          set_has_tolerance();
         } else {
           goto handle_uninterpreted;
         }
-        if (input->ExpectTag(8)) goto parse_size;
+        if (input->ExpectTag(17)) goto parse_n_angular_buckets;
+        break;
+      }
+
+      // optional double n_angular_buckets = 2;
+      case 2: {
+        if (::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_FIXED64) {
+         parse_n_angular_buckets:
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   double, ::google::protobuf::internal::WireFormatLite::TYPE_DOUBLE>(
+                 input, &n_angular_buckets_)));
+          set_has_n_angular_buckets();
+        } else {
+          goto handle_uninterpreted;
+        }
         if (input->ExpectAtEnd()) return true;
         break;
       }
@@ -201,10 +217,14 @@ bool Config::MergePartialFromCodedStream(
 
 void Config::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // repeated int32 size = 1;
-  for (int i = 0; i < this->size_size(); i++) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(
-      1, this->size(i), output);
+  // optional double tolerance = 1;
+  if (has_tolerance()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(1, this->tolerance(), output);
+  }
+
+  // optional double n_angular_buckets = 2;
+  if (has_n_angular_buckets()) {
+    ::google::protobuf::internal::WireFormatLite::WriteDouble(2, this->n_angular_buckets(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -215,10 +235,14 @@ void Config::SerializeWithCachedSizes(
 
 ::google::protobuf::uint8* Config::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // repeated int32 size = 1;
-  for (int i = 0; i < this->size_size(); i++) {
-    target = ::google::protobuf::internal::WireFormatLite::
-      WriteInt32ToArray(1, this->size(i), target);
+  // optional double tolerance = 1;
+  if (has_tolerance()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(1, this->tolerance(), target);
+  }
+
+  // optional double n_angular_buckets = 2;
+  if (has_n_angular_buckets()) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteDoubleToArray(2, this->n_angular_buckets(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -231,16 +255,18 @@ void Config::SerializeWithCachedSizes(
 int Config::ByteSize() const {
   int total_size = 0;
 
-  // repeated int32 size = 1;
-  {
-    int data_size = 0;
-    for (int i = 0; i < this->size_size(); i++) {
-      data_size += ::google::protobuf::internal::WireFormatLite::
-        Int32Size(this->size(i));
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional double tolerance = 1;
+    if (has_tolerance()) {
+      total_size += 1 + 8;
     }
-    total_size += 1 * this->size_size() + data_size;
-  }
 
+    // optional double n_angular_buckets = 2;
+    if (has_n_angular_buckets()) {
+      total_size += 1 + 8;
+    }
+
+  }
   if (!unknown_fields().empty()) {
     total_size +=
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
@@ -266,7 +292,14 @@ void Config::MergeFrom(const ::google::protobuf::Message& from) {
 
 void Config::MergeFrom(const Config& from) {
   GOOGLE_CHECK_NE(&from, this);
-  size_.MergeFrom(from.size_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_tolerance()) {
+      set_tolerance(from.tolerance());
+    }
+    if (from.has_n_angular_buckets()) {
+      set_n_angular_buckets(from.n_angular_buckets());
+    }
+  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -289,7 +322,8 @@ bool Config::IsInitialized() const {
 
 void Config::Swap(Config* other) {
   if (other != this) {
-    size_.Swap(&other->size_);
+    std::swap(tolerance_, other->tolerance_);
+    std::swap(n_angular_buckets_, other->n_angular_buckets_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
     std::swap(_cached_size_, other->_cached_size_);
