@@ -45,3 +45,4 @@ bool operator==(accf::Point l, accf::Point r) {
 bool operator!=(accf::Point l, accf::Point r) {
   return !(l == r);
 }
+
