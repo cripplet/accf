@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package accf_protos;
+
+import "ball.proto";
+import "locale.proto";
+
+message Box {
+  // UNIX timestamp.
+  // TOOD(cripplet): Replace with google.protobuf.Timestamp.
+  int64 timestamp = 1
+
+  locale size = 2;
+  repeated Ball balls = 3;
+}
