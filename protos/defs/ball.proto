@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package accf_protos;
+
+import "locale.proto";
+
+// Point-based mathematical construct.
+message Ball {
+  Locale locale = 1;
+}

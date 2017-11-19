@@ -1,0 +1,5 @@
+# Ignore all compiled source files
+*
+
+# Explicitly create this directory in the git repo
+!.gitignore

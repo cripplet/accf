@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package accf_protos;
+
+message Locale {
+  enum CoordinateSystem {
+    CARTESIAN = 0;
+    CYLINDRICAL = 1;
+    POLAR = 2;
+  }
+
+  CoordinateSystem coordinate_system = 1;
+  repeated float dimensions = 2;
+}

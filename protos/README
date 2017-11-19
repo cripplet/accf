@@ -1,0 +1,15 @@
+ACCF Protobuf Definitions
+====
+
+To compile protobufs:
+
+```
+PROTO_DIR=${GOPATH}/src/github.com/cripplet/accf/protos
+protoc \
+  --go_out=${PROTO_DIR}/src/ \
+  ${PROTO_DIR}/defs/* \
+  --proto_path=${PROTO_DIR}/defs/
+```
+
+`defs/` is the directory where all proto definition (`.proto` files) reside.
+`src/` is the compiled file directory (e.g. `.pb.go`)
