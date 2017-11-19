@@ -1,6 +1,0 @@
-package protos;
-
-message Config {
-  optional double tolerance = 1;
-  optional double n_angular_buckets = 2;
-}
