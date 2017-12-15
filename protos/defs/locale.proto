@@ -10,5 +10,5 @@ message Locale {
   }
 
   CoordinateSystem coordinate_system = 1;
-  repeated float dimensions = 2;
+  repeated double dimensions = 2;
 }
